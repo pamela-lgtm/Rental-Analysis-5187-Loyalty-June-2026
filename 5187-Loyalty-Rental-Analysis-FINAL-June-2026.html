@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Analysis — 5187 Loyalty Dr | Verandah Properties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#008C82;--teal-deep:#00665F;--gold:#D4AF50;--charcoal:#1A1A1A;
+    --ink:#2B2B2B;--paper:#FBFAF6;--paper-2:#F3F0E7;--line:#E2DDCF;
+    --muted:#6E6A60;--good:#1E7A5A;--warn:#B0792A;--bad:#9A3B30;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;color:var(--charcoal);line-height:1.12;letter-spacing:.2px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:'Jost';font-weight:500;text-transform:uppercase;letter-spacing:.28em;font-size:.7rem;color:var(--teal)}
+
+  header.hero{background:var(--charcoal);color:#fff;padding:60px 0 48px;border-bottom:4px solid var(--gold)}
+  header.hero .eyebrow{color:var(--gold)}
+  header.hero h1{color:#fff;font-size:2.9rem;margin:14px 0 6px;font-weight:700}
+  header.hero .sub{font-size:1.05rem;color:#E7E5DE;max-width:700px}
+  .meta-strip{display:flex;flex-wrap:wrap;gap:0;margin-top:32px;border-top:1px solid rgba(255,255,255,.18)}
+  .meta-strip div{flex:1 1 170px;padding:16px 20px 6px 0;border-right:1px solid rgba(255,255,255,.1)}
+  .meta-strip div:last-child{border-right:none}
+  .meta-strip .k{font-size:.64rem;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);font-weight:500}
+  .meta-strip .v{font-family:'Cormorant Garamond';font-size:1.25rem;color:#fff;font-weight:500}
+
+  .banner{background:var(--teal-deep);color:#fff;padding:18px 0;border-bottom:3px solid var(--gold)}
+  .banner .wrap{display:flex;gap:16px;align-items:flex-start}
+  .banner .icon{font-family:'Cormorant Garamond';font-size:1.8rem;color:var(--gold);line-height:1;font-weight:700}
+  .banner .t{font-family:'Cormorant Garamond';font-size:1.22rem;font-weight:600;color:#fff}
+  .banner .d{font-size:.92rem;color:#DCEDEA}
+
+  section{padding:48px 0}
+  section:nth-child(even){background:var(--paper-2)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-head .num{font-family:'Cormorant Garamond';font-size:1.4rem;color:var(--gold);font-weight:600}
+  h2{font-size:2.05rem}
+  .sec-intro{max-width:740px;color:var(--muted);margin:10px 0 26px;font-size:1.0rem}
+
+  .rangebox{background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:3px;padding:32px;text-align:center;margin-bottom:14px}
+  .rangebox .lab{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);font-weight:500}
+  .rangebox .range{font-family:'Cormorant Garamond';font-size:3.6rem;font-weight:700;color:var(--charcoal);line-height:1.05;margin:6px 0}
+  .rangebox .target{font-size:1.0rem;color:var(--teal-deep)}
+  .rangebox .target b{color:var(--teal-deep);font-weight:600}
+  .rangebox .cond{font-size:.82rem;color:var(--muted);margin-top:10px}
+  .goalpill{display:inline-block;background:var(--gold);color:var(--charcoal);font-weight:600;font-family:'Jost';font-size:.8rem;letter-spacing:.05em;padding:6px 16px;border-radius:20px;margin-top:14px;text-transform:uppercase}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+  .card{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);padding:18px;border-radius:2px}
+  .card .lab{font-size:.64rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:500}
+  .card .big{font-family:'Cormorant Garamond';font-size:1.9rem;font-weight:600;color:var(--charcoal);line-height:1.1;margin:5px 0 2px}
+  .card .sub{font-size:.8rem;color:var(--muted)}
+
+  .snap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .snap .m{background:#fff;padding:15px 18px}
+  .snap .m .l{font-size:.62rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:500}
+  .snap .m .n{font-family:'Cormorant Garamond';font-size:1.35rem;font-weight:600;color:var(--charcoal)}
+  .snap .m .n.sm{font-size:1.0rem}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:#fff;margin-top:10px}
+  table{border-collapse:collapse;width:100%;min-width:660px;font-size:.85rem}
+  th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--charcoal);color:#fff;font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}
+  tbody tr:nth-child(odd){background:var(--paper)}
+  tbody tr.hot{background:#F7E9E6}
+  tbody tr.cool{background:#EAF4F0}
+  td .nm{font-family:'Cormorant Garamond';font-size:1.0rem;font-weight:600;color:var(--charcoal);display:block}
+  td .sm{font-size:.71rem;color:var(--muted)}
+  .rent{font-family:'Cormorant Garamond';font-weight:600;color:var(--teal-deep)}
+  .dom-hi{color:var(--bad);font-weight:500}
+  .dom-lo{color:var(--good);font-weight:500}
+  tfoot td{background:var(--paper-2);font-weight:500;color:var(--charcoal);border-top:2px solid var(--charcoal)}
+  .tnote{font-size:.83rem;color:var(--muted);margin-top:12px}
+
+  .callout{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--teal);padding:16px 20px;margin-top:18px;font-size:.95rem;border-radius:2px}
+  .callout b{color:var(--teal-deep)}
+  .callout.warn{border-left-color:var(--warn);background:#FBF4E7}
+  .callout.warn b{color:var(--warn)}
+  .callout.key{border-left-color:var(--gold);background:#FCF8EE}
+  .callout.key b{color:var(--charcoal)}
+
+  .mathbox{background:#fff;border:1px solid var(--line);border-radius:3px;padding:22px 24px;margin-top:18px}
+  .mathbox h4{font-size:1.25rem;color:var(--teal-deep);margin-bottom:10px}
+  .mathrow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+  .mathrow:last-of-type{border-bottom:none}
+  .mathrow span:last-child{font-variant-numeric:tabular-nums;font-weight:500}
+  .mathrow.tot{border-top:2px solid var(--charcoal);margin-top:4px;padding-top:12px;font-weight:600}
+  .mathrow.tot span:last-child{color:var(--good)}
+
+  ul.pts{list-style:none;margin-top:6px}
+  ul.pts li{padding:9px 0 9px 22px;position:relative;font-size:.96rem;color:var(--ink);border-bottom:1px solid var(--line)}
+  ul.pts li:before{content:'';position:absolute;left:0;top:16px;width:8px;height:8px;background:var(--gold);border-radius:50%}
+  ul.pts li b{color:var(--teal-deep);font-weight:500}
+
+  .steps{counter-reset:s}
+  .steps .st{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .steps .st:before{counter-increment:s;content:counter(s);font-family:'Cormorant Garamond';font-size:1.7rem;font-weight:700;color:var(--gold);min-width:32px}
+  .steps .st h4{font-size:1.2rem;margin-bottom:3px}
+  .steps .st p{font-size:.93rem;color:var(--muted)}
+
+  footer{background:var(--charcoal);color:#CFCCC3;padding:46px 0 38px;border-top:4px solid var(--gold)}
+  footer .brand{font-family:'Cormorant Garamond';font-size:1.85rem;color:#fff;font-weight:600}
+  footer .tag2{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;margin:4px 0 20px}
+  footer .by{font-size:.9rem;color:#E7E5DE;margin-bottom:18px}
+  footer .fine{font-size:.74rem;color:#9A968C;line-height:1.7;border-top:1px solid rgba(255,255,255,.14);padding-top:16px}
+
+  @media(max-width:780px){
+    header.hero h1{font-size:2.1rem}
+    .cards{grid-template-columns:1fr}
+    .snap{grid-template-columns:1fr 1fr}
+    .rangebox .range{font-size:2.6rem}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Verandah Properties · Rental Analysis</div>
+    <h1>5187 Loyalty Drive</h1>
+    <p class="sub">A market-backed rental strategy for a new-construction 4-bedroom investment property in The Glades at Crossprairie, St. Cloud, FL 34772 — built to lease fast in a saturated submarket.</p>
+    <div class="meta-strip">
+      <div><div class="k">Prepared For</div><div class="v">Chris Brown</div></div>
+      <div><div class="k">Prepared By</div><div class="v">Pamela Syvertson</div></div>
+      <div><div class="k">Date</div><div class="v">June 20, 2026</div></div>
+      <div><div class="k">Basis</div><div class="v">CoreLogic CMA · 14 comps</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  <div class="wrap">
+    <div class="icon">→</div>
+    <div>
+      <div class="t">The recommendation in one line: price to win, not to wait.</div>
+      <div class="d">This submarket is oversupplied with new-build 4-bedroom rentals, and the homes priced for top dollar are sitting empty for two to four months. The fastest path to income is to be the clear value on the street — the aim is a qualified tenant in well under a month.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATION -->
+<section id="rec">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2>Recommended Rent</h2></div>
+    <p class="sec-intro">For an unfurnished 12-month lease, priced against what is actually <em>leasing</em> in Crossprairie right now — not what owners are hoping to get. The number below is set to make your property the obvious choice and lease it quickly.</p>
+
+    <div class="rangebox">
+      <div class="lab">Recommended Launch Rent</div>
+      <div class="range">$2,395 / mo</div>
+      <div class="target">Start here, ready to move: <b>$2,295</b> (priced to move) — <b>$2,450</b> (ceiling)</div>
+      <div class="cond">Unfurnished · 12-month term · straight price, no concession gimmick · be prepared to step to $2,295 to get it leased</div>
+      <div class="goalpill">The goal: lease in under 21 days</div>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="lab">Market is Asking (median)</div><div class="big">$2,575</div><div class="sub">across active 4BR listings</div></div>
+      <div class="card"><div class="lab">Market is Leasing (median)</div><div class="big">$2,400</div><div class="sub">confirmed closed rents</div></div>
+      <div class="card"><div class="lab">The Gap That Causes Vacancy</div><div class="big">~$175/mo</div><div class="sub">asking vs. actually clearing</div></div>
+    </div>
+
+    <div class="callout key"><b>Why $2,395 — with $2,295 ready in reserve:</b> the only confirmed closed leases in this submarket cleared between $2,395 and $2,575, median $2,400, and the lowest-priced ones leased fastest. We launch at $2,395 to undercut every identical unit on your own street; if the first week is quiet, stepping to $2,295 makes the value simply undeniable for a like-new 4-bedroom. Leasing in under three weeks is the <em>goal</em> — not a guarantee — and the way you give it the best shot is by being the unmistakable best value on the market.</div>
+  </div>
+</section>
+
+<!-- DIRECT COMPETITION -->
+<section id="competition">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2>Your Direct Competition</h2></div>
+    <p class="sec-intro">These are the identical Lennar Tahoe II floor plans (4 bed, 2,071 sqft) for rent on your own street — Loyalty Drive. A tenant can compare your property side-by-side with its twins, so price is decisive. Notice what happens to the ones priced high.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Identical Model · Loyalty Dr</th><th>Built</th><th>Bed/Bath</th><th>Asking Rent</th><th>Days on Market</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hot"><td><span class="nm">5195 Loyalty Dr</span><span class="sm">same Tahoe II</span></td><td>2025</td><td>4 / 2.5</td><td class="rent">$2,750</td><td class="dom-hi">57 — sitting</td></tr>
+          <tr class="hot"><td><span class="nm">5151 Loyalty Dr</span><span class="sm">same Tahoe II</span></td><td>2025</td><td>4 / 2.5</td><td class="rent">$2,750</td><td class="dom-hi">57 — sitting</td></tr>
+          <tr><td><span class="nm">5107 Loyalty Dr</span><span class="sm">same Tahoe II</span></td><td>2026</td><td>4 / 2.5</td><td class="rent">$2,500</td><td>24</td></tr>
+          <tr><td><span class="nm">5115 Loyalty Dr</span><span class="sm">same Tahoe II</span></td><td>2026</td><td>4 / 2.5</td><td class="rent">$2,490</td><td>17</td></tr>
+          <tr class="cool"><td><span class="nm">5187 Loyalty Dr — yours</span><span class="sm">launch $2,395 · floor $2,295</span></td><td>2025</td><td>4 / 2.5</td><td class="rent">$2,395</td><td class="dom-lo">goal: lease fast</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><b>The pattern is unmistakable:</b> the two units asking $2,750 have sat for nearly two months with no lease. The ones that repriced into the $2,490–$2,500 range are newer to market and moving faster. At $2,395 you step below all four — the same floor plan, at a better price, in like-new condition. There is no stronger position on this street.</div>
+  </div>
+</section>
+
+<!-- WHAT'S LEASING -->
+<section id="leasing">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2>What Is Actually Leasing</h2></div>
+    <p class="sec-intro">Asking prices are opinions; closed leases are facts. Here is every comparable 4-bedroom that has actually leased — or gone under contract — recently. This is the real ceiling for achievable rent.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Leased / Pending Comp</th><th>Built</th><th>SqFt</th><th>Leased Rent</th><th>Days to Lease</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="nm">4081 Flowering Peach Ln</span><span class="sm">Stevens Plantation · leased 4/07/26</span></td><td>2006</td><td>2,365</td><td class="rent">$2,400</td><td class="dom-lo">19</td></tr>
+          <tr><td><span class="nm">4603 Sidesaddle Trl</span><span class="sm">Meadow at Crossprairie · leased 5/15/26</span></td><td>2024</td><td>2,340</td><td class="rent">$2,575</td><td>36</td></tr>
+          <tr><td><span class="nm">4904 Zion Dr</span><span class="sm">Canoe Creek Lakes · leased 5/29/26</span></td><td>2001</td><td>2,095</td><td class="rent">$2,395</td><td>47</td></tr>
+          <tr class="hot"><td><span class="nm">4632 Homestead Trl</span><span class="sm">Meadow · PENDING · 1 month free</span></td><td>2024</td><td>2,104</td><td class="rent">$2,500*</td><td class="dom-hi">48</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Closed-lease median</td><td></td><td></td><td class="rent">$2,400</td><td>avg 34 days</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="callout warn"><b>*The concession trap:</b> that pending unit advertised $2,500, but it had to give away a full month free to attract the tenant. Spread over a 12-month lease, the owner actually collects about <b>$2,292/month</b> — and it <em>still</em> took 48 days. A straight, honest $2,395 with no gimmick beats their true number by roughly $100/month, presents as cleaner value to tenants, and should lease faster.</div>
+  </div>
+</section>
+
+<!-- THE CASE FOR LOWER -->
+<section id="case">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2>Why Pricing Lower Wins More</h2></div>
+    <p class="sec-intro">It feels counterintuitive to "leave money on the table," but in an oversupplied market the math runs the other way. Because you own this property free and clear, you have the rare freedom to price for speed — and speed is what protects your return.</p>
+
+    <div class="mathbox">
+      <h4>The cost of chasing a higher number</h4>
+      <div class="mathrow"><span>Hold out for an extra $100/month in rent</span><span>+$1,200 / year</span></div>
+      <div class="mathrow"><span>One extra month vacant while you wait (at ~$2,395)</span><span>−$2,395</span></div>
+      <div class="mathrow tot"><span>Time to recover a single vacant month via that premium</span><span>~24 months</span></div>
+    </div>
+    <p class="tnote">Chasing an extra $100/month takes two full years of occupancy just to recover one month of vacancy. The high-priced units on your street have already been empty far longer than that.</p>
+
+    <ul class="pts">
+      <li><b>The submarket is saturated.</b> The CMA shows a wave of recently built 4-bedroom homes listed at aspirational rents the area isn't supporting — which is why so many sit 70, 113, even 127 days. Pricing with the leased comps, not the asking comps, sidesteps that trap entirely.</li>
+      <li><b>Location sets the ceiling.</b> Crossprairie is convenient — minutes to the Turnpike, about 20 minutes to Lake Nona's Medical City — but it is not a Lake Nona address, and the rents reflect that. The market clears in the $2,400s, not the $2,700s.</li>
+      <li><b>Free and clear is your advantage.</b> With no mortgage, there is no debt payment forcing a high number. Your only real cost is vacancy, so the smart move is to lease quickly to a strong tenant and start the income clock.</li>
+      <li><b>Speed compounds.</b> Leasing in under 21 days instead of 60+ keeps roughly six to eight weeks of rent in your pocket and gets your tenant settled before the next wave of competing new construction hits the market.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- YOUR ADVANTAGES -->
+<section id="advantages">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2>Your Property's Advantages</h2></div>
+    <p class="sec-intro">A low price alone isn't the strategy — it's a low price on a genuinely better property. These are the levers that make $2,395 feel like a steal to the right tenant.</p>
+    <div class="snap">
+      <div class="m"><div class="l">Bedrooms</div><div class="n">4 bed / 2.5 bath</div></div>
+      <div class="m"><div class="l">Living Area</div><div class="n">2,071 sqft</div></div>
+      <div class="m"><div class="l">Condition</div><div class="n sm">Like-new, 2025</div></div>
+      <div class="m"><div class="l">Floor Plan</div><div class="n sm">Lennar Tahoe II</div></div>
+      <div class="m"><div class="l">Garage</div><div class="n sm">2-car attached</div></div>
+      <div class="m"><div class="l">Appliances</div><div class="n sm">Incl. washer/dryer</div></div>
+    </div>
+    <ul class="pts">
+      <li><b>Effectively brand-new.</b> Built in 2025 and only briefly occupied — most competing leased comps are older (2001, 2006) or already lived-in. A pristine, never-truly-used investment property is the single best magnet for a qualified, long-term tenant.</li>
+      <li><b>True 4-bedroom demand.</b> Four bedrooms with a flexible first-floor study widens your tenant pool — families and work-from-home renters both — without raising your price.</li>
+      <li><b>Amenity-rich community.</b> Pool, clubhouse, dog park, playground, tennis, and trails add lifestyle value the listing can lead with.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- STRATEGY / NEXT STEPS -->
+<section id="next">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span><h2>Go-To-Market Plan</h2></div>
+    <div class="steps">
+      <div class="st"><div><h4>Launch at $2,395, ready to step to $2,295</h4><p>Open as the clear value leader on Loyalty Drive: newest condition, priced below every identical floor plan, no gimmicks. If showings or applications are light in the first 7–10 days, move decisively to $2,295 — at that number, a like-new 4-bedroom is an undeniable value and should not last.</p></div></div>
+      <div class="st"><div><h4>Professional marketing the day it's ready</h4><p>High-quality photos, full syndication, and Rently self-showings to capture every qualified lead immediately — speed in week one is what beats the 60-day askers.</p></div></div>
+      <div class="st"><div><h4>Screen rigorously while moving fast</h4><p>Pricing to lease quickly never means lowering the tenant bar. Full credit, income, and background screening protects the property and your return — speed comes from price and presentation, not from a weaker tenant.</p></div></div>
+      <div class="st"><div><h4>Protect the income with SureVestor</h4><p>Your first year of management includes SureVestor's Landlord Shield — coverage for tenant-caused damage, lost rent, and eviction costs, with no-deductible liability protection. Risk off your plate from day one.</p></div></div>
+      <div class="st"><div><h4>Hands-off from Alpharetta</h4><p>You manage nothing day-to-day. Owner portal, transparent reporting, and direct access to Pamela keep you fully in the loop from Georgia.</p></div></div>
+    </div>
+    <div class="callout"><b>Bottom line:</b> In this market, the owner who prices for speed wins. Launch at $2,395 and keep $2,295 in reserve to get it moved — on a like-new 4-bedroom owned free and clear, that is an unbeatable value. The goal is to be leased and earning in under three weeks while the $2,750 listings down the street sit empty.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Verandah Properties LLC</div>
+    <div class="tag2">Curating Lake Nona's Finest Rental Portfolio</div>
+    <div class="by">Prepared by Pamela Syvertson, Owner &amp; Broker · June 20, 2026<br>Rental Analysis · 5187 Loyalty Dr, St. Cloud, FL 34772</div>
+    <p class="fine">This rental analysis is an opinion of achievable market rent based on a CoreLogic Comparative Market Analysis of 14 comparable rental listings in the Crossprairie submarket as of June 20, 2026, together with the subject property's MLS record (O6350778) and public data. It is not an appraisal and does not follow USPAP guidelines, and it is not a guarantee of rental income or lease-up time. Comparable rents reflect active asking prices and recently leased/pending prices; market conditions change. Achievable rent depends on final condition at listing, photography and marketing, seasonality, and tenant demand at the time of listing. Verandah Properties LLC is not a financial or tax advisor, and this analysis does not constitute investment, tax, or legal advice. Broker license CQ1048619 · NARPM member.</p>
+  </div>
+</footer>
+
+</body>
+</html>
